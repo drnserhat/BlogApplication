@@ -12,7 +12,7 @@ namespace BlogApplication.Services
             var newFileName = Guid.NewGuid() + extension;
             var location = "";
 
-                location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UyeFotolar/", newFileName);
+                location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/", newFileName);
 
 
             var stream = new FileStream(location, FileMode.Create);
