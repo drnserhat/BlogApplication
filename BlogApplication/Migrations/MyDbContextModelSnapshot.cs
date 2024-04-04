@@ -124,6 +124,10 @@ namespace BlogApplication.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("FotoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("HizmetBaslik")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

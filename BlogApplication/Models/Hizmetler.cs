@@ -5,5 +5,7 @@
 
         public string HizmetBaslik { get; set; }
         public string HizmetDetay { get; set; }
+        public string FotoUrl { get; set; }
+
     }
 }
