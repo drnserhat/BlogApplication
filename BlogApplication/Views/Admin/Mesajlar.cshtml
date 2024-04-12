@@ -1,0 +1,53 @@
+﻿
+@model List<Message>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Hizmetler</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Konu</th>
+                    <th>Ad-Soyad</th>
+                    <th>Email</th>
+                    <th>Tarih</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.Konu</td>
+                        @if (!string.IsNullOrEmpty(item.Mesaj) && item.Mesaj.Length >= 30)
+                        {
+                            <td>@Html.Raw(item.Mesaj.Substring(0, 30))</td>
+                        }
+                        else if (!string.IsNullOrEmpty(item.Mesaj))
+                        {
+                            <td>@Html.Raw(item.Mesaj)</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+
+                        <td>@item.Email</td>
+                        <td>@item.CreatedDate</td>
+                        <td>
+
+                 
+
+                            <a onclick="confirmSil('Admin','MesajSil','@item.ID')" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sil" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>

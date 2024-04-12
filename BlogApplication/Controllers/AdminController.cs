@@ -310,5 +310,18 @@ namespace BlogApplication.Controllers
             return RedirectToAction("Iletisim", "Admin");
         }
 
+        public IActionResult Mesajlar()
+        {
+            var ana = _db.Messages.ToList();
+
+            return View(ana);
+        }
+        public IActionResult MesajSil(int id)
+        {
+             var ana =   _db.Messages.Find(id);
+            _db.Messages.Remove(ana);
+            _db.SaveChanges();
+           return RedirectToAction("Mesajlar","Admin");
+        }
     }
 }
