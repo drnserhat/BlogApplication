@@ -200,7 +200,7 @@ namespace BlogApplication.Controllers
             }
             _db.Hizmetlers.Update(ana);
             _db.SaveChanges();
-            return RedirectToAction("Hizmetler", "Admin");
+            return RedirectToAction("Projeler", "Admin");
         }
 
         public IActionResult HizmetSil(int id)
@@ -208,10 +208,19 @@ namespace BlogApplication.Controllers
 			var ana = _db.Hizmetlers.Find(id);
             _db.Hizmetlers.Remove(ana);
             _db.SaveChanges();
-			//ViewBag.Fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hizmet).FirstOrDefault();
-			// ViewBag.Hizmetler = _db.Hizmetlers.ToList();
-			return RedirectToAction("Hizmetler", "Admin");
-		}
+            //ViewBag.Fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hizmet).FirstOrDefault();
+            // ViewBag.Hizmetler = _db.Hizmetlers.ToList();
+            if (ana.HizmetTipi==HizmetTipi.hizmet)
+            {
+                return RedirectToAction("Hizmetler", "Admin");
+
+            }
+            else
+            {
+                return RedirectToAction("Projeler", "Admin");
+
+            }
+        }
 
 
 
