@@ -6,9 +6,9 @@
 @model Hizmetler
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Hizmetler Düzenleme Formu</h5>
+        <h5 class="card-title">Proje Sayfası Ekleme Formu</h5>
 
-        <form asp-controller="Admin" asp-action="HizmetDuzenle" method="Post" enctype="multipart/form-data">
+        <form asp-controller="Admin" asp-action="Projeler" method="Post" enctype="multipart/form-data">
             <input asp-for="ID" name="ID" class="form-control" type="hidden" />
 
             @*        <div class="row mb-3">
@@ -23,6 +23,7 @@
                     <input asp-for="HizmetBaslik" name="HizmetBaslik" class="form-control" type="text" />
                 </div>
             </div>
+
             <div class="row mb-3">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Alt Başlık</label>
                 <div class="col-sm-10">
@@ -41,11 +42,7 @@
                 <div class="col-sm-2">
                     <input name="file" class="form-control" type="file" />
                 </div>
-                <div class="col-sm-8">
 
-                    <img width="100" src="~/@Model.FotoUrl" />
-
-                </div>
             </div>
 
             <div class="row mb-3">
@@ -60,3 +57,52 @@
     </div>
 </div>
 
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Projeler</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Proje Başlık</th>
+                    <th>Proje Detay</th>
+                    <th>Tarih</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<Hizmetler>)ViewBag.Hizmetler)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.HizmetBaslik</td>
+                        @if (!string.IsNullOrEmpty(item.HizmetDetay) && item.HizmetDetay.Length >= 30)
+                        {
+                            <td>@Html.Raw(item.HizmetDetay.Substring(0, 30))</td>
+                        }
+                        else if (!string.IsNullOrEmpty(item.HizmetDetay))
+                        {
+                            <td>@Html.Raw(item.HizmetDetay)</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+
+                        <td>@item.CreatedDate</td>
+                        <td>
+
+                            <a asp-action="ProjeDuzenle" asp-controller="Admin" asp-route-id="@item.ID" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Düzenle" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
+
+                            <a onclick="confirmSil('Admin','HizmetSil','@item.ID')" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sil" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>

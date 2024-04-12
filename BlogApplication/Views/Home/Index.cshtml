@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@model AnaSayfa
 <div class="main-banner">
 	<div id="rev_slider_34_1_wrapper" class="rev_slider_wrapper" data-alias="news-gallery34">
 		<!-- START REVOLUTION SLIDER 5.0.7 fullwidth mode -->
@@ -33,13 +33,13 @@
 							 data-splitout="none"
 							 data-responsive_offset="on">
 							<div class="banner-text">
-								<span>It's an Amazing Services!</span>
-								<h2>Welcome to Construction <span>Services Company</span></h2>
+								<span>@Model.AltBaslik</span>
+								<h2>@Model.Baslik</h2>
 
 								<p>
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever.
+									@Html.Raw(Model.AltBaslik)
 								</p>
-								<a class="btn-text" href="about_us.html"> read more</a>
+								<a class="btn-text" href="about_us.html">......</a>
 							</div>
 						</div>
 
@@ -526,111 +526,3 @@
 	</div>
 </div>
 
-
-<!-- Blog -->
-<section id="blog" class="blog padding ptb-xs-40">
-	<div class="container">
-		<!-- section head -->
-		<div class="row text-center mb-30">
-			<div class="col-sm-12">
-				<div class="sec_hedding">
-					<h2><span>Our</span> Blog</h2>
-					<span class="b-line"></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-
-			<!-- posts -->
-			<div class="col-lg-4 mb-sm-30 mb-xs-30">
-				<div class="post">
-					<div class="post-img img-fluid">
-						<a href="#!"> <img src="assets/images/blog/home_blog_1.jpg" alt="image"> </a>
-					</div>
-					<div class="post-content">
-						<a href="#!" class="blog_tital"> Blog Title Goes Here</a>
-						<p>
-							Lorem ipsum dolor sit amet, consec tetur elit. In maximus ligula semper.
-						</p>
-						<a href="#!" class="read_more">Read More..</a>
-
-						<div class="info">
-							<ul>
-								<li>
-									<a href="#"> <span class="ion-person"></span> Admin </a>
-								</li>
-								<li>
-									<a href="#!"> <span class="icon-clock"></span> 6 August </a>
-								</li>
-								<li>
-									<a href="#!"> <span class="flaticon-doctor-stethoscope"></span> Health Care </a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 mb-sm-30 mb-xs-30">
-				<div class="post">
-					<div class="post-img img-fluid">
-						<a href="#!"> <img src="assets/images/blog/home_blog_2.jpg" alt="image"> </a>
-					</div>
-					<div class="post-content">
-						<a href="#!" class="blog_tital"> Blog Title Goes Here</a>
-						<p>
-							Lorem ipsum dolor sit amet, consec tetur elit. In maximus ligula semper.
-						</p>
-						<a href="#!" class="read_more">Read More..</a>
-
-						<div class="info">
-							<ul>
-								<li>
-									<a href="#"> <span class="ion-person"></span> Admin </a>
-								</li>
-								<li>
-									<a href="#!"> <span class="icon-clock"></span> 6 August </a>
-								</li>
-								<li>
-									<a href="#!"> <span class="flaticon-doctor-stethoscope"></span> Health Care </a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4">
-				<div class="post">
-					<div class="post-img img-fluid">
-						<a href="#!"> <img src="assets/images/blog/home_blog_3.jpg" alt="image"> </a>
-					</div>
-					<div class="post-content">
-						<a href="#!" class="blog_tital"> Blog Title Goes Here</a>
-						<p>
-							Lorem ipsum dolor sit amet, consec tetur elit. In maximus ligula semper.
-						</p>
-						<a href="#!" class="read_more">Read More..</a>
-
-						<div class="info">
-							<ul>
-								<li>
-									<a href="#"> <span class="ion-person"></span> Admin </a>
-								</li>
-								<li>
-									<a href="#!"> <span class="icon-clock"></span> 6 August </a>
-								</li>
-								<li>
-									<a href="#!"> <span class="flaticon-doctor-stethoscope"></span> Health Care </a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</section>
-<!-- Blog End -->

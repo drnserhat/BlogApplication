@@ -65,7 +65,7 @@ namespace BlogApplication.Controllers
         public IActionResult Hizmetler() {
            // var ana = _db.Hizmetlers.FirstOrDefault();
             ViewBag.Fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hizmet).FirstOrDefault();
-            ViewBag.Hizmetler= _db.Hizmetlers.ToList();
+            ViewBag.Hizmetler= _db.Hizmetlers.Where(a=>a.HizmetTipi==HizmetTipi.hizmet).ToList();
             return View();
         }
         [HttpPost]
@@ -76,6 +76,7 @@ namespace BlogApplication.Controllers
             var fotolar = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hizmet).FirstOrDefault();
             anaSayfa.UpdatedDate = DateTime.Now;
             anaSayfa.CreatedDate = DateTime.Now;
+            anaSayfa.HizmetTipi = HizmetTipi.hizmet;
             if (file != null && file.Length > 0)
             {
             
@@ -107,6 +108,7 @@ namespace BlogApplication.Controllers
             var fotolar = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hizmet).FirstOrDefault();
             ana.UpdatedDate = DateTime.Now;
             ana.CreatedDate = DateTime.Now;
+            anaSayfa.HizmetTipi = HizmetTipi.hizmet;
 
             if (file != null && file.Length > 0)
             {
@@ -130,8 +132,78 @@ namespace BlogApplication.Controllers
             return RedirectToAction("Hizmetler", "Admin");
         }
 
+        public IActionResult Projeler()
+        {
+            // var ana = _db.Hizmetlers.FirstOrDefault();
+            ViewBag.Fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hizmet).FirstOrDefault();
+            ViewBag.Hizmetler = _db.Hizmetlers.Where(a => a.HizmetTipi == HizmetTipi.proje).ToList();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Projeler(Hizmetler anaSayfa, IFormFile file)
+        {
+            System.GC.Collect();
+            string webRootPath = _env.WebRootPath;
+            var fotolar = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hizmet).FirstOrDefault();
+            anaSayfa.UpdatedDate = DateTime.Now;
+            anaSayfa.CreatedDate = DateTime.Now;
+            anaSayfa.HizmetTipi = HizmetTipi.proje;
+            if (file != null && file.Length > 0)
+            {
 
-		public IActionResult HizmetSil(int id)
+
+                anaSayfa.FotoUrl = UploadFile.Upload(file, FotoTipi.hizmet);
+
+
+
+            }
+            _db.Hizmetlers.Update(anaSayfa);
+
+            _db.SaveChanges();
+            return RedirectToAction("Hizmetler", "Admin");
+        }
+        public IActionResult ProjeDuzenle(int id)
+        {
+            var ana = _db.Hizmetlers.Where(a => a.ID == id).FirstOrDefault();
+            //ViewBag.Fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hizmet).FirstOrDefault();
+            // ViewBag.Hizmetler = _db.Hizmetlers.ToList();
+            return View(ana);
+        }
+        [HttpPost]
+        public IActionResult ProjeDuzenle(Hizmetler anaSayfa, IFormFile file)
+        {
+            System.GC.Collect();
+            var ana = _db.Hizmetlers.Where(a => a.ID == anaSayfa.ID).FirstOrDefault();
+
+            string webRootPath = _env.WebRootPath;
+            var fotolar = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hizmet).FirstOrDefault();
+            ana.UpdatedDate = DateTime.Now;
+            ana.CreatedDate = DateTime.Now;
+            anaSayfa.HizmetTipi = HizmetTipi.proje;
+
+            if (file != null && file.Length > 0)
+            {
+
+                string oldFilePath = Path.Combine(webRootPath, ana.FotoUrl);
+                if (System.IO.File.Exists(oldFilePath))
+                {
+
+                    System.IO.File.Delete(oldFilePath);
+                }
+
+
+
+
+                ana.FotoUrl = UploadFile.Upload(file, FotoTipi.hizmet);
+
+
+            }
+            _db.Hizmetlers.Update(ana);
+            _db.SaveChanges();
+            return RedirectToAction("Hizmetler", "Admin");
+        }
+
+        public IActionResult HizmetSil(int id)
 		{
 			var ana = _db.Hizmetlers.Find(id);
             _db.Hizmetlers.Remove(ana);

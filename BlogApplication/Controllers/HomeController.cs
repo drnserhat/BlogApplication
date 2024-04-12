@@ -1,6 +1,7 @@
 ﻿using BlogApplication.Models;
 using BlogApplication.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using System.Diagnostics;
 
 namespace BlogApplication.Controllers
@@ -20,15 +21,16 @@ namespace BlogApplication.Controllers
         {
             var ana = _db.AnaSayfas.FirstOrDefault();
             ViewBag.Fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.anasayfa).ToList();
+
             return View(ana);
         }
 
         public IActionResult Services()
         {
-			var ana = _db.Hizmetlers.ToList();
-		
+            var ana = _db.Hizmetlers.Where(a => a.HizmetTipi == Enums.HizmetTipi.hizmet).ToList();
 
-			return View(ana);
+
+            return View(ana);
 
 		}
         public IActionResult ServiceDetail(int id)
@@ -44,6 +46,30 @@ namespace BlogApplication.Controllers
 
 			}
 			var detay = _db.Hizmetlers.Where(a=>a.ID == id).FirstOrDefault();
+            return View(detay);
+        }
+
+        public IActionResult Projects()
+        {
+            var ana = _db.Hizmetlers.Where(a=>a.HizmetTipi==Enums.HizmetTipi.proje).ToList();
+
+
+            return View(ana);
+
+        }
+        public IActionResult ProjectDetail(int id)
+        {
+            if (id == 0)
+            {
+                id = Convert.ToInt32(HttpContext.Session.GetString("Id"));
+
+            }
+            else
+            {
+                HttpContext.Session.SetString("Id", id.ToString());
+
+            }
+            var detay = _db.Hizmetlers.Where(a => a.ID == id).FirstOrDefault();
             return View(detay);
         }
 
