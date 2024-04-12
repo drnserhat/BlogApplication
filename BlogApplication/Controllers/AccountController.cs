@@ -6,9 +6,11 @@ using System.Net.Mail;
 using System.Net;
 using Microsoft.AspNetCore.Identity;
 using BlogApplication.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogApplication.Controllers
 {
+  
     public class AccountController : Controller
     {
         MyDbContext _db;
@@ -58,7 +60,7 @@ namespace BlogApplication.Controllers
                     await HttpContext.SignInAsync(principal);
 
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Admin");
                 }
             }
             ViewBag.HataMesaji = "Email veya Şifre Yanlış!";

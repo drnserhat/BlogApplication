@@ -1,10 +1,13 @@
 ﻿using BlogApplication.Enums;
 using BlogApplication.Models;
 using BlogApplication.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogApplication.Controllers
 {
+    [Authorize("AdminPolicy")]
+
     public class AdminController : Controller
     {
         MyDbContext _db;
