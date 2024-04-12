@@ -22,6 +22,7 @@ namespace BlogApplication.Controllers
             ViewBag.Fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.anasayfa).ToList();
             return View(ana);
         }
+
         public IActionResult Services()
         {
 			var ana = _db.Hizmetlers.ToList();
@@ -30,7 +31,49 @@ namespace BlogApplication.Controllers
 			return View(ana);
 
 		}
+        public IActionResult ServiceDetail(int id)
+        {
+            if (id==0)
+            {
+                id = Convert.ToInt32(HttpContext.Session.GetString("Id"));
 
+			}
+			else
+            {
+				HttpContext.Session.SetString("Id", id.ToString());
+
+			}
+			var detay = _db.Hizmetlers.Where(a=>a.ID == id).FirstOrDefault();
+            return View(detay);
+        }
+
+        public IActionResult About() {
+
+			var ana = _db.Hakkimizdas.FirstOrDefault();
+            var fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hakkimizda).FirstOrDefault();
+            ViewBag.Fotograf = fotograf.FotoUrl;
+			return View(ana);
+		}
+
+        public IActionResult Contact()
+        {
+			var ana = _db.Iletisims.FirstOrDefault();
+			var fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.iletisim).FirstOrDefault();
+			ViewBag.Fotograf = fotograf.FotoUrl;
+			return View(ana);
+		}
+
+        [HttpPost]
+        public IActionResult SendMessage(Message message)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Contact");
+            }
+            _db.Messages.Add(message);
+            _db.SaveChanges();
+            return RedirectToAction("Contact");
+        }
 		public IActionResult Privacy()
         {
             return View();

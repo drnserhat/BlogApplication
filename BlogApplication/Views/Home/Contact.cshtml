@@ -1,0 +1,87 @@
+﻿
+
+@model Iletisim
+<section class="inner-intro bg-img light-color overlay-before parallax-background">
+    <div class="container">
+        <div class="row title">
+            <div class="title_row">
+                <h1 data-title="Contact"><span>İletişim</span></h1>
+                <div class="page-breadcrumb">
+                    <a>Home</a>/ <span>İletişim</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Intro Section End-->
+<!-- Contact Section -->
+<section class="ptb ptb-xs-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-lg-8 offset-md-2 text-center">
+                <h2>İletişim</h2>
+                <p class="lead">İletişim bilgileri bu kısımda bulunur.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 contact pb-60 pt-30">
+                <div class="row text-center">
+                    <div class="col-md-4 col-lg-4 pb-xs-30"> <i class="ion-android-call icon-circle pos-s"></i><a href="#" class="mt-15 i-block">@Model.Telefon</a> </div>
+                    <div class="col-md-4 col-lg-4 pb-xs-30">
+                        <i class="ion-ios-location icon-circle pos-s"></i>
+                        <p class="mt-15">
+                            @Html.Raw(Model.Adress)
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-lg-4 pb-xs-30"> <i class="ion-ios-email icon-circle pos-s"></i><a href="mailto:@Model.Email" class="mt-15 i-block">@Model.Email</a> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Map Section -->
+    <div class="map">
+        <div id="map"></div>
+    </div>
+    <!-- Map Section -->
+    <div class="container contact-form padding pt-xs-40 mt-up">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <h4>İLETİŞİM FORMU</h4>
+                <p> İletişim formu ile sayfa sahibine ulaşabilirsiniz.</p>
+                <!-- Contact FORM -->
+                <form class="contact-form mt-45" asp-action="SendMessage" method="post" asp-controller="Home" asp id="contact">
+                    <!-- IF MAIL SENT SUCCESSFULLY -->
+                    <div id="success">
+                        <div role="alert" class="alert alert-success"> <strong>Thanks</strong> for using our template. Your message has been sent. </div>
+                    </div>
+                    <!-- END IF MAIL SENT SUCCESSFULLY -->
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-field">
+                                <input class="input-sm form-full" id="name" type="text" name="Name" placeholder="Ad-Soyad">
+                            </div>
+                            <div class="form-field">
+                                <input class="input-sm form-full" id="email" type="text" name="Email" placeholder="Email">
+                            </div>
+                            <div class="form-field">
+                                <input class="input-sm form-full" id="sub" type="text" name="Konu" placeholder="Konu">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <div class="form-field">
+                                <textarea class="form-full" id="message" rows="7" name="Mesaj" placeholder="Mesajınız"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 mt-30">
+                            <input class="btn-text" type="submit" id="submit" name="button" value="Mesaj Gönder">
+                        </div>
+                    </div>
+                </form>
+                <!-- END Contact FORM -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section -->  

@@ -12,5 +12,6 @@ namespace BlogApplication.Models
         public DbSet<Fotograf> Fotografs { get; set; }
         public DbSet<AnaSayfa> AnaSayfas { get; set; }
         public DbSet<Hizmetler> Hizmetlers { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }
