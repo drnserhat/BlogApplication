@@ -323,5 +323,11 @@ namespace BlogApplication.Controllers
             _db.SaveChanges();
            return RedirectToAction("Mesajlar","Admin");
         }
+        public IActionResult MesajDetay(int id)
+        {
+            var ana = _db.Messages.Find(id);
+
+            return View(ana);
+        }
     }
 }

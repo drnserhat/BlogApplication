@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model Message
+
+
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Mesaj Detay</h5>
+
+
+
+            <table class="table table-striped table-hover table-bordered table-light">
+
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Detay</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>Ad-Soyad</td>
+                        <td>@Model.Name</td>
+                    </tr>
+
+                    <tr>
+                        <td>Email</td>
+                        <td>@Model.Email</td>
+                    </tr>
+
+                    <tr>
+                        <td>Konu</td>
+                        <td>@Model.Konu</td>
+                    </tr>
+                    <tr>
+                        <td>Açıklama</td>
+                        <td>@Html.Raw(Model.Mesaj)</td>
+                    </tr>
+
+                    <tr>
+                        <td>Oluşturulma Tarihi</td>
+                        <td>@Model.CreatedDate</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>

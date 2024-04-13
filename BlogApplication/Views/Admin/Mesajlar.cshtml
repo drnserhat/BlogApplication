@@ -39,7 +39,7 @@
                         <td>@item.CreatedDate</td>
                         <td>
 
-                 
+                            <a asp-action="MesajDetay" asp-controller="Admin" asp-route-id="@item.ID" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Detay" data-bs-original-title="View detail" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
 
                             <a onclick="confirmSil('Admin','MesajSil','@item.ID')" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sil" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
                         </td>
