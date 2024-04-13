@@ -21,8 +21,16 @@ namespace BlogApplication.Controllers
         {
             var ana = _db.AnaSayfas.FirstOrDefault();
             ViewBag.Fotograf = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.anasayfa).ToList();
+            ViewBag.About = _db.Hakkimizdas.FirstOrDefault();
+            var aboutFoto = _db.Fotografs.Where(a => a.FotoTipi == Enums.FotoTipi.hakkimizda).FirstOrDefault();
+			ViewBag.AboutFoto = aboutFoto.FotoUrl;
+			var hizmet = _db.Hizmetlers.Where(a => a.HizmetTipi == Enums.HizmetTipi.hizmet).Take(4).ToList();
+            ViewBag.Hizmet=hizmet;
+			var proje = _db.Hizmetlers.Where(a => a.HizmetTipi == Enums.HizmetTipi.proje).Take(4).ToList();
+			ViewBag.Projeler = proje;
 
-            return View(ana);
+            ViewBag.MessageCount = _db.Messages.Count();
+			return View(ana);
         }
 
         public IActionResult Services()
@@ -100,6 +108,21 @@ namespace BlogApplication.Controllers
             _db.SaveChanges();
             return RedirectToAction("Contact");
         }
+
+        [HttpPost]
+        public IActionResult SendEmail(Message message)
+        {
+            message.Name = "Email ileten..";
+            message.Mesaj = "Email ileten..";
+            message.Konu = "Email ileten..";
+			if (message.Email==null || message.Email == "")
+			{
+				return RedirectToAction("Index");
+			}
+			_db.Messages.Add(message);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 		public IActionResult Privacy()
         {
             return View();

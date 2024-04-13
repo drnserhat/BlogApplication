@@ -143,12 +143,12 @@
 
 				<div class="col-lg-4 col-md-12 col-xs-12 mt-sm-30 mt-xs-15">
 					<div class="newsletter">
-						<h4 class="mb-30">NEWSLETTER SIGNUP</h4>
+						<h4 class="mb-30">Size Ulaşalım</h4>
 						<p>
-							Subscribe to Our Newsletter to get Important News, Amazing Offers & Inside Scoops:
+							Size ulaşmamız için bize email adresinizi iletebilirsiniz.
 						</p>
-						<form>
-							<input type="email" class="newsletter-input input-md newsletter-input mb-0" placeholder="Enter Your Email">
+						<form method="post" asp-controller="Home" asp-action="SendEmail">
+							<input type="email" name="Email" class="newsletter-input input-md newsletter-input mb-0" placeholder="Email giriniz...">
 							<button class="newsletter-btn btn btn-xs btn-color" type="submit" value="">
 								<i class="fa fa-angle-right mr-0"></i>
 							</button>
